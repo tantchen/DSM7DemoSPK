@@ -59,9 +59,7 @@ cp -a CHANGELOG ${working_dir}
 cp -a LICENSE ${working_dir}
 cp -a PACKAGE_ICON*.PNG ${working_dir}
 
-sed '1d' INFO.sh > ${working_dir}/INFO.tmp
-head -n -2 < ${working_dir}/INFO.tmp > ${working_dir}/INFO
-rm ${working_dir}/INFO.tmp
+sed '1d' INFO.sh | sed '1!G;h;$!d' | sed '1,2d' | sed '1!G;h;$!d' > ${working_dir}/INFO
 
 chmod -R 777 ${working_dir}
 chmod -R 755 ${package_dir}
